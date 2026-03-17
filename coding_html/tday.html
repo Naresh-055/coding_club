@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Domino’s Inspired Menu</title>
+
+  <!-- React CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Babel CDN -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .grid { display: flex; gap: 20px; flex-wrap: wrap; }
+    .card { width: 220px; border: 1px solid #ddd; border-radius: 10px; overflow: hidden; }
+    .card img { width: 100%; height: 150px; object-fit: cover; }
+    .card-body { padding: 10px; }
+    .card-footer { display: flex; justify-content: space-between; align-items: center; }
+    button { padding: 5px 10px; cursor: pointer; }
+    .filters button { margin-right: 10px; }
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    const pizzas = [
+      {
+        id: 1,
+        name: "Margherita",
+        price: 109,
+        type: "veg",
+        desc: "Classic delight with 100% real mozzarella cheese",
+        img: "https://cdn.jflimages.co.in/nextgen-catalog/media/prod/Dominos/WebHomeProductV1/05e8ba85-4444-4c19-b085-8012f1baf0b4_margherita_side.webp?ver=V0.0.1"
+      },
+      {
+        id: 2,
+        name: "Peppy Paneer",
+        price: 269,
+        type: "veg",
+        desc: "Juicy paneer with capsicum & red paprika",
+        img: "https://cdn.jflimages.co.in/nextgen-catalog/media/prod/Dominos/WebHomeProductV1/ff2e39b8-87cc-4f3f-a2f5-06198a85f3df_peppy_paneer_side.webp?ver=V0.0.1"
+      },
+      {
+        id: 3,
+        name: "Chicken Feast",
+        price: 299,
+        type: "nonveg",
+        desc: "Loaded with spicy chicken & cheese",
+        img: "https://cdn.jflimages.co.in/nextgen-catalog/media/prod/Dominos/WebHomeProductV1/a52b70f2-01cb-42b8-ae4f-566df999115c_farmhouse_side.webp?ver=V0.0.1"
+      }
+    ];
+
+    function PizzaCard({ pizza }) {
+      return (
+        <div className="card">
+          <img src={pizza.img} alt={pizza.name} />
+          <div className="card-body">
+            <h3>{pizza.name}</h3>
+            <p>{pizza.desc}</p>
+            <div className="card-footer">
+              <span className="price">₹{pizza.price}</span>
+              <button>Add +</button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function App() {
+      const [filter, setFilter] = useState("all");
+
+      const filteredPizzas =
+        filter === "all"
+          ? pizzas
+          : pizzas.filter(p => p.type === filter);
+
+      return (
+        <div className="app">
+          <h1>Domino’s Inspired Menu</h1>
+
+          <div className="filters">
+            <button onClick={() => setFilter("all")}>All</button>
+            <button onClick={() => setFilter("veg")}>Veg Only</button>
+            <button onClick={() => setFilter("nonveg")}>Non-Veg</button>
+          </div>
+
+          <div className="grid">
+            {filteredPizzas.map(pizza => (
+              <PizzaCard key={pizza.id} pizza={pizza} />
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
