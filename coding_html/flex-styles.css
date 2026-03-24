@@ -2,7 +2,11 @@
     display: flex;
     flex-direction:row-reverse;
     justify-content:space-evenly;
+    border:10px solid black;
+    border-radius:360vh;
 
+    height:90vh;
+    align-items: center;
 }
 .box{
     width:150px;
@@ -12,7 +16,7 @@
     border-radius:20px;
 }
 #box1{
-    background-color:red;
+    background-color:w;
 }
 #box2{
     background-color:blue;
