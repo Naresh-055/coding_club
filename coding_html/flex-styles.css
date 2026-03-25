@@ -1,22 +1,23 @@
 .container{
     display: flex;
-    flex-direction:row-reverse;
-    justify-content:space-evenly;
+    flex-direction:row;
     border:10px solid black;
-    border-radius:360vh;
-
-    height:90vh;
-    align-items: center;
+    justify-content:center;                       /* x-axis is control by the code */
+    height:90vh;                           
+    flex-wrap:wrap;                       /* y-axis is control by the code */
+    gap:10px;                /*  this tag cut the space along the x-axis*/
+   
 }
 .box{
     width:150px;
     height:150px;
     font-size:8em;
     text-align:center;
-    border-radius:20px;
+    border-radius:15px;
 }
 #box1{
-    background-color:w;
+    background-color:plum;
+    align-self:flex-end;
 }
 #box2{
     background-color:blue;
